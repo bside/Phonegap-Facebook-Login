@@ -45,6 +45,7 @@
 		<param name="APP_ID" value="1434579543483455" />
 		<param name="APP_NAME" value="Localhost Facebook Login" />
 	</gap:plugin>
+	<gap:platform name="android" />
 	<icon src="icon.png" />
 	<icon gap:platform="android" gap:qualifier="ldpi" src="res/icon/android/icon-36-ldpi.png" />
 	<icon gap:platform="android" gap:qualifier="mdpi" src="res/icon/android/icon-48-mdpi.png" />

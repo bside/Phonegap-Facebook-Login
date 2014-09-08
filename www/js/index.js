@@ -17,6 +17,12 @@
  * under the License.
  */
 var app = {
+	debug: function(text)
+	{
+		var p = document.createElement('p');
+		p.innerHTML = text || '';
+		document.getElementById('debug').appendChild(p);
+	},
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -33,14 +39,6 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-
-        FB.init(
-        {
-			appId: '1434579543483455',
-			nativeInterface: CDV.FB,
-			useCachedDialogs: false
-        });
-
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
@@ -56,7 +54,61 @@ var app = {
     }
 };
 
-
-function promptLogin() {
-	FB.login(null, {scope: 'email'});
+var fb = {
+	init: function()
+	{
+		FB.init(
+        {
+			appId: '1434579543483455',
+			nativeInterface: CDV.FB,
+			useCachedDialogs: false,
+			status: false
+        });
+		app.debug('init ok');
+		fb.status();
+	},
+	login: function(scope)
+	{
+		FB.login(function(response)
+		{
+			if ( response.authResponse )
+			{
+				app.debug('Usuario logeado... obteniendo informacion');
+				fb.info();
+			}
+			else
+			{
+				app.debug('Usuario rechazo login');
+			}
+		},
+		{
+			scope: scope || 'email'
+		});
+	},
+	status: function()
+	{
+		FB.getLoginStatus(function(response)
+		{
+			if ( response.status === 'connected' )
+			{
+				app.debug('Logeado. ID: ' + response.authResponse.userID + ' -- Access Token: ' + response.authResponse.accessToken);
+				fb.info();
+			}
+			else if ( response.status === 'not_authorized' )
+			{
+				app.debug('Logeado pero no autorizado')
+			}
+			else
+			{
+				app.debug('No logeado');
+			}
+		});
+	},
+	info: function()
+	{
+		FB.api('/me', function(response)
+		{
+			console.log('Nombre usuario: ' + response.name);
+		});
+	}
 }
