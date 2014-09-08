@@ -40,6 +40,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+		fb.init();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
