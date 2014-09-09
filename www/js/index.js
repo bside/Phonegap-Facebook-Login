@@ -97,7 +97,7 @@ var fb = {
 			}
 			else if ( response.status === 'not_authorized' )
 			{
-				app.debug('Logeado pero no autorizado')
+				app.debug('Logeado pero no autorizado');
 			}
 			else
 			{
@@ -107,6 +107,7 @@ var fb = {
 	},
 	info: function()
 	{
+		app.debug('API call: /me');
 		FB.api('/me', function(response)
 		{
 			console.log('Nombre usuario: ' + response.name);
