@@ -17,12 +17,19 @@
 	<preference name="stay-in-webview" value="false" />
 	<preference name="ios-statusbarstyle" value="black-opaque" />
 	<preference name="detect-data-types" value="true" />
-	<preference name="exit-on-suspend" value="false" />
+	<preference name="exit-on-suspend" value="true" />
 	<preference name="show-splash-screen-spinner" value="true" />
 	<preference name="auto-hide-splash-screen" value="true" />
 	<preference name="disable-cursor" value="false" />
 	<preference name="android-minSdkVersion" value="7" />
 	<preference name="android-installLocation" value="auto" />
+
+	<gap:plugin name="org.apache.cordova.console" version="0.2.7" />
+	<gap:plugin name="org.apache.cordova.device" version="0.2.8" />
+	<gap:plugin name="org.apache.cordova.dialogs" version="0.2.6" />
+	<gap:plugin name="org.apache.cordova.inappbrowser" version="0.2.4" />
+	<gap:plugin name="org.apache.cordova.media" version="0.2.8" />
+	<gap:plugin name="org.apache.cordova.splashscreen" version="0.2.7" />
 
 	<gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.4.0">
 		<param name="APP_ID" value="1434579543483455" />
