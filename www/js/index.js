@@ -64,8 +64,26 @@ var fb = {
 			status: false
         });
 		app.debug('init ok');
-		console.log( facebookConnectPlugin );
-		//fb.status();
+		fb.binds();
+		fb.status();
+	},
+	binds: function()
+	{
+		FB.Event.subscribe('auth.statusChange', function(authResponse)
+		{
+			app.debug('Status change...');
+			console.log( authResponse );
+		});
+		FB.Event.subscribe('auth.login', function(authResponse)
+		{
+			app.debug('Login capturado...');
+			console.log( authResponse );
+		});
+		FB.Event.subscribe('auth.logout', function(authResponse)
+		{
+			app.debug('Logout capturado...');
+			console.log( authResponse );
+		});
 	},
 	login: function(scope)
 	{
@@ -102,17 +120,23 @@ var fb = {
 			{
 				app.debug('No logeado');
 			}
-			//
-		});
+		}, true);
 	},
 	info: function()
 	{
 		app.debug('API call: /me');
-		FB.api('/me', function(response)
+		FB.api('/me', { fields: 'id, name, email' }, function(response)
 		{
-			app.debug('UID ' + response.id);
-			app.debug('Nombre: ' + response.name);
-			app.debug('Email: ' + response.email);
+			if ( ! response || response.error )
+			{
+				app.debug('Error al obetener datos de usuario');
+			}
+			else
+			{
+				app.debug('UID ' + response.id);
+				app.debug('Nombre: ' + response.name);
+				app.debug('Email: ' + response.email);
+			}
 		});
 	},
 	logout: function()
@@ -126,22 +150,32 @@ var fb = {
 	share: function()
 	{
 		app.debug('Compartiendo...');
-		FB.ui(
+		try
 		{
-			method: 'feed',
-			name: 'NOMBRE SHARE',
-			caption: 'CAPTION SHARE',
-			description: 'DESCRIPTION SHARE',
-			link: 'http://google.cl',
-			picture: 'http://placehold.it/200x200',
-			actions: [{
-				name: 'Action 1',
-				link: 'http://google.cl'
-			}]
-		},
-		function(response)
+			FB.ui(
+			{
+				method: 'feed',
+				name: 'NOMBRE SHARE',
+				caption: 'CAPTION SHARE',
+				description: 'DESCRIPTION SHARE',
+				link: 'http://google.cl',
+				picture: 'http://placehold.it/200x200'
+			},
+			function(response)
+			{
+				if ( ! response || response.error )
+				{
+					app.debug('Error al obetener datos de usuario');
+				}
+				else
+				{
+					app.debug('Share OK');
+				}
+			});
+		}
+		catch (error)
 		{
-			app.debug('Share OK');
-		});
+			app.debug('Error al compartir.');
+		}
 	}
 }
