@@ -110,7 +110,9 @@ var fb = {
 		app.debug('API call: /me');
 		FB.api('/me', function(response)
 		{
-			console.log('Nombre usuario: ' + response.name);
+			app.debug('UID ' + response.id);
+			app.debug('Nombre: ' + response.name);
+			app.debug('Email: ' + response.email);
 		});
 	}
 }
