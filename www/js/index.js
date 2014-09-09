@@ -103,6 +103,7 @@ var fb = {
 			{
 				app.debug('No logeado');
 			}
+			//
 		});
 	},
 	info: function()
@@ -121,6 +122,29 @@ var fb = {
 		FB.logout(function()
 		{
 			app.debug('Logout OK');
+		});
+	},
+	share: function()
+	{
+		app.debug('Compartiendo...');
+		FB.ui(
+		{
+			method: 'feed',
+			name: 'NOMBRE SHARE',
+			caption: 'CAPTION SHARE',
+			description: 'DESCRIPTION SHARE',
+			link: 'http://google.cl',
+			picture: 'http://placehold.it/200x200',
+			actions: [{
+				name: 'Action 1',
+				link: 'http://google.cl'
+			}],
+			user_message_prompt: 'Mensaje de usuario.... ?'
+		},
+		function(response)
+		{
+			app.debug('Share OK: ' + response);
+			console.log(response);
 		});
 	}
 }

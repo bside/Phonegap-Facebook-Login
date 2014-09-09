@@ -4,12 +4,12 @@
 	<description>
 		Hello World sample application that responds to the deviceready event.
 	</description>
-	<author email="support@phonegap.com" href="http://phonegap.com">
-		PhoneGap Team
+	<author email="alvaro@code.cl" href="http://code.cl">
+		code.cl
 	</author>
-	<preference name="permissions" value="none" />
 	<preference name="phonegap-version" value="3.5.0" />
-	<preference name="orientation" value="default" />
+	<preference name="permissions" value="none" />
+	<preference name="orientation" value="portrait" />
 	<preference name="target-device" value="universal" />
 	<preference name="fullscreen" value="true" />
 	<preference name="webviewbounce" value="true" />
@@ -29,6 +29,7 @@
 		<param name="APP_NAME" value="Localhost Facebook Login" />
 	</gap:plugin>
 	<gap:platform name="android" />
+	<gap:platform name="ios" />
 
 	<icon src="icon.png" />
 	<icon gap:platform="android" gap:qualifier="ldpi" src="res/icon/android/icon-36-ldpi.png" />
