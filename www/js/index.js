@@ -114,5 +114,13 @@ var fb = {
 			app.debug('Nombre: ' + response.name);
 			app.debug('Email: ' + response.email);
 		});
+	},
+	logout: function()
+	{
+		app.debug('Desconectando usuario...');
+		FB.logout(function()
+		{
+			app.debug('Logout OK');
+		});
 	}
 }
