@@ -64,6 +64,7 @@ var fb = {
 			status: false
         });
 		app.debug('init ok');
+		console.log( facebookConnectPlugin );
 		//fb.status();
 	},
 	login: function(scope)
