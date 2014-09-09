@@ -90,10 +90,9 @@ var fb = {
 	{
 		FB.getLoginStatus(function(response)
 		{
-			console.log(response);
 			if ( response.status === 'connected' )
 			{
-				app.debug('Logeado. ID: ' + response.authResponse.userID + ' -- Access Token: ' + response.authResponse.accessToken);
+				app.debug('Logeado. ID: ' + response.authResponse.userId + ' -- Access Token: ' + response.authResponse.accessToken);
 				fb.info();
 			}
 			else if ( response.status === 'not_authorized' )
@@ -139,13 +138,11 @@ var fb = {
 			actions: [{
 				name: 'Action 1',
 				link: 'http://google.cl'
-			}],
-			user_message_prompt: 'Mensaje de usuario.... ?'
+			}]
 		},
 		function(response)
 		{
-			app.debug('Share OK: ' + response);
-			console.log(response);
+			app.debug('Share OK');
 		});
 	}
 }
