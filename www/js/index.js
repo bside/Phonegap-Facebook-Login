@@ -66,7 +66,7 @@ var fb = {
 			status: false
         });
 		app.debug('init ok');
-		fb.status();
+		//fb.status();
 	},
 	login: function(scope)
 	{
