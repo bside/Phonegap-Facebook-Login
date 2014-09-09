@@ -174,7 +174,10 @@ var fb = {
 			if ( FB._nativeInterface )
 			{
 				app.debug('Compartiendo formato nativo...');
-				FB._nativeInterface.dialog(params, callback);
+				FB._nativeInterface.dialog(params, callback, function()
+				{
+					app.debug('Error al compartir.');
+				});
 			}
 			else
 			{
