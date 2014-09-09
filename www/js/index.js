@@ -149,11 +149,7 @@ var fb = {
 	},
 	share: function()
 	{
-		app.debug('Compartiendo...');
-		try
-		{
-			FB.ui(
-			{
+		var params		= {
 				method: 'feed',
 				name: 'NOMBRE SHARE',
 				caption: 'CAPTION SHARE',
@@ -161,7 +157,7 @@ var fb = {
 				link: 'http://google.cl',
 				picture: 'http://placehold.it/200x200'
 			},
-			function(response)
+			callback		= function(response)
 			{
 				if ( ! response || response.error )
 				{
@@ -171,7 +167,20 @@ var fb = {
 				{
 					app.debug('Share OK');
 				}
-			});
+			};
+
+		try
+		{
+			if ( FB._nativeInterface )
+			{
+				app.debug('Compartiendo formato nativo...');
+				FB._nativeInterface.dialog(params, callback);
+			}
+			else
+			{
+				app.debug('Compartiendo formato web...');
+				FB.ui(params, callback);
+			}
 		}
 		catch (error)
 		{
