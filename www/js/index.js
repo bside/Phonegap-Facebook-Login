@@ -90,6 +90,7 @@ var fb = {
 	{
 		FB.getLoginStatus(function(response)
 		{
+			console.log(response);
 			if ( response.status === 'connected' )
 			{
 				app.debug('Logeado. ID: ' + response.authResponse.userID + ' -- Access Token: ' + response.authResponse.accessToken);
